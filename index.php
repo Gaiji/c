@@ -1,14 +1,12 @@
-
-↓これがあなたのIPアドレスです<br />
+function getIpAddress() {
+    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ipAddresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        return trim(end($ipAddresses));
+    }
+    else {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+}
 <?
-    // IPアドレスを取得して変数にセットする
-    $ipAddress = $_SERVER["REMOTE_ADDR"];
-    print $ipAddress;
-?>
-<br /><br />
-↓数値にするとこんな感じです<br />
-<?
-    // IPアドレスを数値として取得する場合
-    $ipLong = ip2long($ipAddress);
-    print $ipLong;
+    print getIPAddress();
 ?>
