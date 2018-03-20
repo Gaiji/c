@@ -1,1 +1,2 @@
-<?php echo "hello world!";?>
+<?php
+	echo $_SERVER["REMOTE_ADDR"] ;
