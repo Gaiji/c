@@ -12,7 +12,7 @@
         }
     }
     define (URL, (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-    if ($_GET["uuid"] == "5b222858-24d4-4060-ab61-55132d8042bc"){
+    if ($_GET["uuid"] == ("5b222858-24d4-4060-ab61-55132d8042bc"||"6af1557e-3003-48ca-9989-fe703f9729c7"||"6dcaaf9a-1c13-4e2c-b840-683532e96a50")){
         $json_array = array(
             'success' => true,
             'ip' => getIPAddress(),
