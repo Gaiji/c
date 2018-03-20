@@ -21,8 +21,10 @@
         echo json_encode($json_array);
         return;
     }
-    br();
-    echo URL;
-    br();
-    echo getIPAddress();
+    $json_array = array(
+        'success' => false,
+        'ip' => getIPAddress(),
+    );
+    header("Content-Type: text/javascript; charset=utf-8");
+    echo json_encode($json_array);
 ?>
