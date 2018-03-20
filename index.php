@@ -2,28 +2,20 @@
     function br() {
         echo nl2br("\n");
     }
-    function getIpAddress() {
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ipAddresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            return trim(end($ipAddresses));
-        }
-        else {
-            return $_SERVER['REMOTE_ADDR'];
-        }
+    function unicode_encode($str) {
+      return preg_replace_callback("/\\\\u([0-9a-zA-Z]{4})/", "encode_callback", $str);
     }
     define (URL, (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-    if ($_GET["uuid"] == ("5b222858-24d4-4060-ab61-55132d8042bc"||"6af1557e-3003-48ca-9989-fe703f9729c7"||"6dcaaf9a-1c13-4e2c-b840-683532e96a50")){
+    if (strlen($_GET["unicode"]) >= 1){
         $json_array = array(
-            'success' => true,
-            'ip' => getIPAddress(),
+            'conv' => unicode_encode($_GET["unicode"]),
         );
         header("Content-Type: text/javascript; charset=utf-8");
         echo json_encode($json_array);
         return;
     }
     $json_array = array(
-        'success' => false,
-        'ip' => getIPAddress(),
+        'conv' => false,
     );
     header("Content-Type: text/javascript; charset=utf-8");
     echo json_encode($json_array);
